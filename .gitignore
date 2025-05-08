@@ -1,3 +1,8 @@
+# Datasets
+val/
+train/
+run/
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
