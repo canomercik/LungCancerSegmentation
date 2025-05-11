@@ -78,7 +78,7 @@ def parse_all_annotations(xml_path):
                     rr, cc = polygon(y_coords, x_coords, (512, 512))
                     annotation_dict[sop_uid][rr, cc] += 1
 
-        return {sop_uid: (mask >= 4).astype(np.uint8) * 255 for sop_uid, mask in annotation_dict.items()}
+        return {sop_uid: (mask >= 1).astype(np.uint8) * 255 for sop_uid, mask in annotation_dict.items()}  # En az 1 etiket içerenler
     except Exception as e:
         print(f"XML hatası: {xml_path} - {str(e)}")
         return {}
@@ -99,14 +99,15 @@ def process_patient(patient_dir, split_type='train'):
             dicom_path = os.path.join(patient_dir, dicom_file)
             image, sop_uid = load_and_preprocess_dicom(dicom_path)
 
-            if image is None or sop_uid not in masks:
+            if image is None:
                 continue
 
-            mask = masks[sop_uid]
+            # Boşsa zeros, doluysa ilgili mask
+            mask = masks.get(sop_uid, np.zeros_like(image, dtype=np.uint8))
             # Eğer maskede hiç segment yoksa (%100 sıfır):
             if np.count_nonzero(mask) == 0:
-                # rand > 0.1 ise atla → %90 atlama, %10 kaydetme
-                if random.random() > 0.1:
+                # rand > 0.1 ise atla → %95 atlama, %5 kaydetme
+                if random.random() > 0.05:
                     continue
 
             base_name = f"{os.path.basename(patient_dir)}_{dicom_file[:-4]}"

@@ -12,6 +12,7 @@ from model import TverskyFocalLoss
 
 USE_MORF = False
 kernel_size = 3
+preds_threshold = 0.3
 
 matplotlib.use('Agg')
 
@@ -87,7 +88,7 @@ def check_accuracy(loader, model, device="cuda"):
             total_loss += loss.item()
 
             preds = torch.sigmoid(model(x))
-            preds_bin = (preds > 0.5).float()
+            preds_bin = (preds > preds_threshold).float()
 
             # TP, FP, FN, TN hesapla
             tp = (preds_bin * y).sum()
@@ -137,7 +138,7 @@ def get_top_predictions(loader, model, device="cuda", top_n=10):
             x = x.to(device)
             y = y.unsqueeze(1).to(device)
             preds = torch.sigmoid(model(x))
-            preds_bin = (preds > 0.5).float()
+            preds_bin = (preds > preds_threshold).float()
 
             for i in range(x.shape[0]):
                 intersection = (preds_bin[i] * y[i]).sum()

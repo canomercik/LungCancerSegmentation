@@ -12,15 +12,18 @@ from utils import (load_checkpoint, get_loaders, check_accuracy,
                    save_top_predictions, get_top_predictions, visualize_metrics)
 import time
 import json
+#import torch.nn.functional as F
+#from lovasz_losses import lovasz_softmax
+
 
 # Hyperparameters etc.
 LEARNING_RATE = 1e-4
 DEVICE = "cuda" if torch.cuda.is_available() else "cpu"
-BATCH_SIZE = 4
+BATCH_SIZE = 16
 NUM_EPOCHS = 50
 NUM_WORKERS = 4
 IMAGE_HEIGHT = 128  # 512 originally
-IMAGE_WIDTH = 128 # 512 originally
+IMAGE_WIDTH = 128  # 512 originally
 PIN_MEMORY = True
 LOAD_MODEL = False
 TRAIN_IMG_DIR = "train/images/"
@@ -29,10 +32,10 @@ VAL_IMG_DIR = "val/images/"
 VAL_MASK_DIR = "val/masks/"
 
 # Gates
-USE_AUG = False
+USE_AUG = True
 
 # Early stopping parameters
-patience = 5  # Number of epochs to wait for improvement before stopping early
+patience = 6  # Number of epochs to wait for improvement before stopping early
 patience_counter = 0
 
 
@@ -139,6 +142,9 @@ def main():
             A.RandomBrightnessContrast(p=0.2),  # Yeni
             A.GaussNoise(var=(0.001, 0.005), p=0.3),  # Yeni
             A.ElasticTransform(alpha=1, sigma=50, affine=None, p=0.3),  # Lezyon çeşitliliği AZALTILABİLİR.
+            A.GridDistortion(num_steps=5, distort_limit=0.3, p=0.2),
+            A.RandomGamma(gamma_limit=(80, 120), p=0.3),
+            A.GaussianBlur(blur_limit=(3, 7), p=0.2),
             A.Normalize(mean=(0.0), std=(1.0), max_pixel_value=255.0),
             ToTensorV2(),
         ])
@@ -163,8 +169,8 @@ def main():
     )
 
     model = UNET(in_channels=1, out_channels=1).to(DEVICE)
-    loss_fn = DiceFocalLoss(alpha=0.8, gamma=2.0).to(DEVICE)
-    # loss_fn = TverskyFocalLoss().to(DEVICE)
+    # loss_fn = DiceFocalLoss(alpha=0.8, gamma=2.0).to(DEVICE)
+    loss_fn = TverskyFocalLoss(alpha=0.3, beta=0.7).to(DEVICE)
     # loss_fn = nn.BCEWithLogitsLoss()
     optimizer = optim.Adam(model.parameters(), lr=LEARNING_RATE)
 

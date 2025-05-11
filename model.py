@@ -106,6 +106,16 @@ class AttentionGate(nn.Module):
         return x * psi
 
 
+def jaccard_loss(logits, targets, smooth=1e-6):
+    """
+    logits: raw model çıktısı, shape (N,1,H,W) veya (N,H,W)
+    targets: aynı shape’te 0/1 mask
+    """
+    probs = torch.sigmoid(logits)
+    inter = (probs * targets).sum(dim=(1,2,3))
+    union = (probs + targets - probs*targets).sum(dim=(1,2,3))
+    return 1 - ((inter + smooth) / (union + smooth)).mean()
+
 class DiceFocalLoss(nn.Module):
     def __init__(self, alpha=0.8, gamma=2.0, smooth=1e-8):
         super(DiceFocalLoss, self).__init__()
