@@ -114,3 +114,12 @@ This project is MIT-licensed. See [LICENSE](LICENSE) for details.
 
 ```
 ```
+---
+
+## 🙌 Contributors
+
+Thanks to all these wonderful people:
+
+- [@canomercik](https://github.com/canomercik) – Project author  
+- [@mustafayngl](https://github.com/mustafayngl) – Data preprocessing & scripts  
+- [@Sinestre](https://github.com/Sinestre) – 3D U-Net implementation  
