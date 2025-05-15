@@ -97,12 +97,12 @@ mmy branch
 
 ## 📸 Figures
 
-* **![top_5](https://github.com/user-attachments/assets/b5b6e2a5-a7cf-421a-aba3-5a6948781c86)
-** — prediction example
-* **![Ekran görüntüsü 2025-05-11 110758](https://github.com/user-attachments/assets/bd77cce3-1a89-43fb-9853-1f029a931723)
-** — Gradio interface
+* **Prediction Example**
+![top_5](https://github.com/user-attachments/assets/b5b6e2a5-a7cf-421a-aba3-5a6948781c86)
 
-*(Place your images in `docs/images/` and reference them above.)*
+* **Gradio interface**
+![Ekran görüntüsü 2025-05-11 110758](https://github.com/user-attachments/assets/bd77cce3-1a89-43fb-9853-1f029a931723)
+
 
 ---
 
