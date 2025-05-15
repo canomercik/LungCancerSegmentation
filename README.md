@@ -120,6 +120,6 @@ This project is MIT-licensed. See [LICENSE](LICENSE) for details.
 
 Thanks to all these wonderful people:
 
-- [@canomercik](https://github.com/canomercik) – Project author  
-- [@mustafayngl](https://github.com/mustafayngl) – Data preprocessing & scripts  
-- [@Sinestre](https://github.com/Sinestre) – 3D U-Net implementation  
+- [@canomercik](https://github.com/canomercik) – Project author, 2D U-Net &  Data preprocessing
+- [@mustafayngl](https://github.com/mustafayngl) – 3D U-Net & Data preprocessing
+- [@Sinestre](https://github.com/Sinestre) - Research & 3D U-Net
