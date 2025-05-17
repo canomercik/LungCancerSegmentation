@@ -112,8 +112,6 @@ mmy branch
 
 This project is MIT-licensed. See [LICENSE](LICENSE) for details.
 
-```
-```
 ---
 
 ## 🙌 Contributors
