@@ -120,4 +120,4 @@ Thanks to all these wonderful people:
 
 - [@canomercik](https://github.com/canomercik) – Project author, 2D U-Net &  Data preprocessing
 - [@mustafayngl](https://github.com/mustafayngl) – 3D U-Net & Data preprocessing
-- [@Sinestre](https://github.com/Sinestre) - Research & 3D U-Net
+- [@Sinestre](https://github.com/Sinestre) - Research
