@@ -1,5 +1,7 @@
-````markdown
+
 # Lung Nodule Segmentation on LIDC-IDRI
+
+![Ekran görüntüsü 2025-05-11 110758](https://github.com/user-attachments/assets/bd77cce3-1a89-43fb-9853-1f029a931723)
 
 An end-to-end PyTorch pipeline for 2D and 3D U-Net–based lung nodule segmentation, from raw DICOM to interactive inference UI.
 
@@ -24,7 +26,6 @@ An end-to-end PyTorch pipeline for 2D and 3D U-Net–based lung nodule segmentat
    python -m venv venv
    source venv/bin/activate   # or venv\Scripts\activate on Windows
    pip install -r requirements.txt
-````
 
 3. Download LIDC-IDRI DICOMs under `data/LIDC-IDRI/`
 
@@ -100,11 +101,6 @@ mmy branch
 * **Prediction Example**
 
 ![top_5](https://github.com/user-attachments/assets/b5b6e2a5-a7cf-421a-aba3-5a6948781c86)
-
-* **Gradio interface**
-
-![Ekran görüntüsü 2025-05-11 110758](https://github.com/user-attachments/assets/bd77cce3-1a89-43fb-9853-1f029a931723)
-
 
 ---
 
